@@ -4,23 +4,23 @@
 		"ParameterValue": "UdacityProject"
 	},
 	{
-		"ParameterKey": "MyVpcCIDRNew",
+		"ParameterKey": "MyVpcCIDRWebApp",
 		"ParameterValue": "10.0.0.0/16"
 	},
 	{
-		"ParameterKey": "PublicSubnet1CIDR",
+		"ParameterKey": "PublicSubnet1CIDRWebApp",
 		"ParameterValue": "10.0.0.0/24"
 	},
 	{
-		"ParameterKey": "PublicSubnet2CIDR",
+		"ParameterKey": "PublicSubnet2CIDRWebApp",
 		"ParameterValue": "10.0.1.0/24"
 	},
 	{
-		"ParameterKey": "PrivateSubnet1CIDR",
+		"ParameterKey": "PrivateSubnet1CIDRWebApp",
 		"ParameterValue": "10.0.2.0/24"
 	},
 	{
-		"ParameterKey": "PrivateSubnet2CIDR",
+		"ParameterKey": "PrivateSubnet2CIDRWebApp",
 		"ParameterValue": "10.0.3.0/24"
 	}
 ]

@@ -1,8 +1,6 @@
 Description: >
-   Creating this project will give you the hands-on experience you need to confidently 
-   talk about infrastructure as code. We have chosen a realistic scenario where you will
-    deploy a dummy application (a sample JavaScript or HTML file) to the Apache Web Server
-     running on an EC2 instance.
+    Servers
+
 Parameters:
 
     EnvironmentName:
@@ -55,11 +53,11 @@ Resources:
           #!/bin/bash
           sudo apt-get update -y
           sudo apt-get install apache2 -y
-          sudo systemctl start apache2.service          
+          sudo systemctl start apache2.service  
+          sudo  cd /var/www/html
+          sudo  echo "Udacity Demo Web Server Up and Running!" > index.html        
       # ToDo: AMI ID of Ubuntu Linux machine. Too get one, try creating a VM from the web console. 
-      ImageId: ami-0747bdcabd34c712a
-      # ToDo: Change the key-pair name, as applicable to you. 
-      KeyName: nd9990_keypair
+      ImageId: ami-0747bdcabd34c712a 
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t3.medium

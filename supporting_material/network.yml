@@ -10,37 +10,37 @@ Parameters:
         Description: An environment name that will be prefixed to resource names
         Type: String
 
-    MyVpcCIDRNew: 
+    MyVpcCIDRWebApp: 
         Description: Please enter the IP range (CIDR notation) for this VPC
         Type: String
         Default: 10.0.0.0/16
 
-    PublicSubnet1CIDR:
+    PublicSubnet1CIDRWebApp:
         Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
         Type: String
         Default: 10.0.0.0/24
 
-    PublicSubnet2CIDR:
+    PublicSubnet2CIDRWebApp:
         Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
         Type: String
         Default: 10.0.1.0/24
 
-    PrivateSubnet1CIDR:
+    PrivateSubnet1CIDRWebApp:
         Description: Please enter the IP range (CIDR notation) for the private subnet in the first Availability Zone
         Type: String
         Default: 10.0.2.0/24
 
-    PrivateSubnet2CIDR:
+    PrivateSubnet2CIDRWebApp:
         Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
         Type: String
         Default: 10.0.3.0/24
 
 Resources:
 
-    NoelVPC: 
+    VPC: 
         Type: AWS::EC2::VPC
         Properties:
-            CidrBlock: !Ref MyVpcCIDRNew
+            CidrBlock: !Ref MyVpcCIDRWebApp
             EnableDnsHostnames: true
             Tags: 
                 - Key: Name 
@@ -64,7 +64,7 @@ Resources:
         Properties:
             VpcId: !Ref VPC
             AvailabilityZone: !Select [ 0, !GetAZs '' ]
-            CidrBlock: !Ref PublicSubnet1CIDR
+            CidrBlock: !Ref PublicSubnet1CIDRWebApp
             MapPublicIpOnLaunch: true
             Tags: 
                 - Key: Name 
@@ -75,7 +75,7 @@ Resources:
         Properties:
             VpcId: !Ref VPC
             AvailabilityZone: !Select [ 1, !GetAZs '' ]
-            CidrBlock: !Ref PublicSubnet2CIDR
+            CidrBlock: !Ref PublicSubnet2CIDRWebApp
             MapPublicIpOnLaunch: true
             Tags: 
                 - Key: Name 
@@ -86,7 +86,7 @@ Resources:
         Properties:
             VpcId: !Ref VPC
             AvailabilityZone: !Select [ 0, !GetAZs '' ]
-            CidrBlock: !Ref PrivateSubnet1CIDR
+            CidrBlock: !Ref PrivateSubnet1CIDRWebApp
             MapPublicIpOnLaunch: false
             Tags: 
                 - Key: Name 
@@ -97,7 +97,7 @@ Resources:
         Properties:
             VpcId: !Ref VPC
             AvailabilityZone: !Select [ 1, !GetAZs '' ]
-            CidrBlock: !Ref PrivateSubnet2CIDR
+            CidrBlock: !Ref PrivateSubnet2CIDRWebApp
             MapPublicIpOnLaunch: false
             Tags: 
                 - Key: Name 
