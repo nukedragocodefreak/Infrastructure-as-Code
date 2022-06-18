@@ -1,0 +1,55 @@
+Description: Noel Mangwarira - Iam roles for the web app deployment
+#####################################
+Parameters:
+  ProjectName:
+    Description: Will be prefixed to all resources names
+    Type: String
+#####################################
+Resources:
+  IAMWebApp:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      Path: /
+  WebAppPolicies:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub "${ProjectName}-WebApp-Policy"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "s3:GetObject"
+            Resource:
+              !Join [
+                "",
+                [
+                  "arn:aws:s3:::",
+                  Fn::ImportValue: !Sub "${ProjectName}-MyBucket",
+                  /*,
+                ],
+              ]
+      Roles:
+        - !Ref IAMWebApp
+
+  WebAppInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Path: "/"
+      Roles:
+        - !Ref IAMWebApp
+Outputs:
+  InstanceProfile:
+    Description: Instance Profile for the web app server to access s3 bucket
+    Value: !Ref WebAppInstanceProfile
+    Export:
+      Name: !Sub "${ProjectName}-InstanceProfile"
