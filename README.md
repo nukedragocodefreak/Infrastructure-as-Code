@@ -1,3 +1,7 @@
+## Web App URL
+
+http://myser-webap-1uuli5vc1vhjt-1144358206.us-east-1.elb.amazonaws.com/
+
 ## ND9991 - C2- Infrastructure as Code - Supporting Material and Starter Code
 This folder provides the supporting material and starter code for the "ND9991 - C2- Infrastructure as Code" course. This folder contains the following folders:
 1. project_starter - It contains the starter code.
